@@ -1,0 +1,16 @@
+spring:
+    #设置编码格式
+    http:
+          encoding:
+              force: true
+              charset: UTF-8
+              enabled: true
+          multipart:
+              max-file-size: 10MB
+              max-request-size: 20MB
+#web容器的端口号和编码配置
+server:
+    tomcat:
+        uri-encoding: UTF-8
+    #修改Tomcat端口号,默认端口号8080
+    port: 8085

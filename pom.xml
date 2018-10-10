@@ -79,7 +79,16 @@
             <version>1.16.22</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- JSON转XML -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        <!-- Hypermedia as the Engine of Application State -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

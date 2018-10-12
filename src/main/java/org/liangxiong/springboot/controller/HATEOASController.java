@@ -1,6 +1,10 @@
 package org.liangxiong.springboot.controller;
 
+import org.liangxiong.springboot.entity.School;
 import org.liangxiong.springboot.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,15 +14,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
+import static org.springframework.hateoas.core.DummyInvocationUtils.methodOn;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
 /**
  * @author liangxiong
  * Date:2018-10-08
  * Time:21:30
- * @Description REST 相关Demo
+ * @Description HATEOAS 相关Demo
  */
 @RestController
 @RequestMapping("/rest")
-public class RestControllerDemo {
+public class HATEOASController {
+
+    @Bean
+    private School currentSchool() {
+        School school = new School();
+        school.setSchoolId(1);
+        school.setName("init name");
+        return school;
+    }
+
+    @Autowired
+    @Qualifier("currentSchool")
+    private School school;
 
     /**
      * REST 请求返回HTML
@@ -35,12 +54,22 @@ public class RestControllerDemo {
      *
      * @return
      */
-    @GetMapping(value = "/json", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public User getUserJSONForm() {
-        User user = new User();
-        user.setSex("male");
-        user.setUsername("json");
-        return user;
+    @GetMapping(value = "/json/school")
+    public School getSchoolJSONForm() {
+        return school;
+    }
+
+    /**
+     * HATEOAS demo
+     * note：SpringBoot1.4版本无法映射Class级别的@RequestMapping,比如本例地/rest;需要我们升级到1.5版本才行(但是1.5版本不支持velocity)
+     *
+     * @return
+     */
+    @GetMapping("/hateoas/school")
+    public School getSchoolHATEOASForm(@RequestParam String name) {
+        school.setName(name);
+        school.add(linkTo(methodOn(HATEOASController.class).getSchoolHATEOASForm(name)).withSelfRel());
+        return school;
     }
 
     /**

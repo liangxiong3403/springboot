@@ -57,9 +57,9 @@ spring:
 #web容器的端口号和编码配置
 server:
     #修改Tomcat端口号,默认端口号8080
-    port: 8085
+    port: 8086
 management:
     port: 9001
-logging:
-    level:
-        root: info
+lx:
+    favorite:
+        numbers: 6,8,10

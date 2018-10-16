@@ -61,5 +61,20 @@ server:
 management:
     port: 9001
 lx:
+    # 定义数组
     favorite:
         numbers: 6,8,10
+    # 获取uuid
+    uuid:
+        ${random.uuid}
+    # 获取范围内int
+    number:
+        in:
+            range: ${random.int[10,20]}
+    # 配置属性列表,等同于lx.websites=www.liangxiong.com,www.liangxiong.cn
+    websites:
+        -  www.liangxiong.cn
+        -  www.liangxiong.com
+# Spring Boot uses some relaxed rules for binding Environment properties to @ConfigurationProperties beans, so there doesn’t need to be an exact match between the Environment property name and the bean property name
+bar:
+    first-name: tomcat

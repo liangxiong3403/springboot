@@ -1,7 +1,7 @@
 package org.liangxiong.springboot;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * @author liangxiong
@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class APP {
 
     public static void main(String[] args) {
-        SpringApplication.run(APP.class, args);
+        new SpringApplicationBuilder(APP.class)
+            .run(args);
     }
 }

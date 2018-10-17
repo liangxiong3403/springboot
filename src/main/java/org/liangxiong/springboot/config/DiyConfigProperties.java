@@ -5,7 +5,9 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @Configuration
+@Validated
 @ConfigurationProperties("lx")
 @PropertySource("classpath:diy.properties")
 public class DiyConfigProperties {
@@ -25,6 +28,7 @@ public class DiyConfigProperties {
     /**
      * 姓名
      */
+    @NotNull
     private String name;
 
     /**

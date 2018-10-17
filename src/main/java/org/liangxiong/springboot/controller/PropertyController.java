@@ -83,6 +83,16 @@ public class PropertyController {
     }
 
     /**
+     * 获取姓名
+     *
+     * @return
+     */
+    @GetMapping("/firstName")
+    public String getFirstName() {
+        return barComponent.getFirstName();
+    }
+
+    /**
      * 获取性别
      *
      * @return

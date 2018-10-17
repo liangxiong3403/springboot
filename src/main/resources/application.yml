@@ -54,6 +54,9 @@ spring:
             suffix: .jsp
     velocity:
         resource-loader-path: classpath:/velocity/
+    # 开发环境
+    profiles:
+        active: prod
 #web容器的端口号和编码配置
 server:
     #修改Tomcat端口号,默认端口号8080
@@ -78,3 +81,5 @@ lx:
 # Spring Boot uses some relaxed rules for binding Environment properties to @ConfigurationProperties beans, so there doesn’t need to be an exact match between the Environment property name and the bean property name
 bar:
     first-name: tomcat
+logging:
+    config: classpath:log/logback-spring.xml

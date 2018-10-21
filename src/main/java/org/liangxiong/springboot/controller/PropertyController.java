@@ -1,5 +1,6 @@
 package org.liangxiong.springboot.controller;
 
+import org.liangxiong.springboot.component.BarComponent;
 import org.liangxiong.springboot.config.DiyConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

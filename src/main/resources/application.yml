@@ -52,6 +52,11 @@ spring:
             prefix: /
             # 视图访问路径后缀
             suffix: .jsp
+        # Path pattern used for static resources,TODO
+        static-path-pattern: /**
+    # 静态资源根路径(可以存放网站图标)
+    resources:
+        static-locations: classpath:/static/
     velocity:
         resource-loader-path: classpath:/velocity/
     # 开发环境

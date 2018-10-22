@@ -50,7 +50,7 @@ public class User implements Serializable {
     /**
      * 性别
      */
-    @Size(min = 1, max = 2)
+    @Size(min = 1, max = 6)
     private String sex;
 
     /**

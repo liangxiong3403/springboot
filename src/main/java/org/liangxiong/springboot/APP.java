@@ -2,6 +2,7 @@ package org.liangxiong.springboot;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * @author liangxiong
@@ -10,10 +11,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @Description 项目启动类
  */
 @SpringBootApplication
+@ServletComponentScan("org.liangxiong.springboot.servlet")
 public class APP {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(APP.class)
-            .run(args);
+                .run(args);
     }
 }

@@ -42,4 +42,13 @@ public class IndexController {
         return "test3";
     }
 
+    /**
+     * 针对404请求
+     *
+     * @return
+     */
+    @GetMapping("/404")
+    public String notFound() {
+        return "notfound";
+    }
 }

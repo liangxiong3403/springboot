@@ -26,9 +26,4 @@ public class UserController {
         return userService.findOne(userId);
     }
 
-    @GetMapping("error")
-    public void diyError() {
-        throw new RuntimeException("diy error response");
-    }
-
 }

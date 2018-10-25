@@ -1,5 +1,7 @@
-package org.liangxiong.springboot.controller;
+package org.liangxiong.springboot.config;
 
+import org.liangxiong.springboot.controller.CustomErrorType;
+import org.liangxiong.springboot.controller.IndexController;
 import org.liangxiong.springboot.util.ExceptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +21,9 @@ import javax.servlet.http.HttpServletRequest;
  * @Time 11:31
  */
 @ControllerAdvice(basePackageClasses = IndexController.class)
-public class UserControllerAdvice extends ResponseEntityExceptionHandler {
+public class ExceptionConfig extends ResponseEntityExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserControllerAdvice.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionConfig.class);
 
     /**
      * 针对特定异常类型,定制化响应消息体

@@ -90,3 +90,10 @@ logging:
     config: classpath:log/logback-spring.xml
 # logback-spring.xml中springProperty需要
 user: liangxiong
+# security相关配置
+security:
+    user:
+        # 登录账号
+        name: admin
+        # 登陆密码
+        password: 123456

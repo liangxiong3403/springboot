@@ -16,9 +16,10 @@ import java.util.List;
  * Time:20:32
  *
  * @author liangxiong
+ * @Description 使用阿里巴巴FastJson解析数据,@Profile指定什么环境下启用配置
  */
 @Configuration
-@Profile("prod")
+@Profile({"dev", "test", "prod"})
 public class FastJsonConfiguration extends WebMvcConfigurerAdapter {
 
     @Override

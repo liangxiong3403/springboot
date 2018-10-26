@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 /**
  * @author liangxiong
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @SpringBootApplication
 @ServletComponentScan("org.liangxiong.springboot.servlet")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableAuthorizationServer
 public class APP {
 
     public static void main(String[] args) {

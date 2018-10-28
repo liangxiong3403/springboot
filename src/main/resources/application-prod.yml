@@ -97,4 +97,4 @@ security:
     oauth2:
         client:
             client-id: liangxiong
-            client-secret: 000000
+            client-secret: 111111

@@ -49,7 +49,7 @@ spring:
     mvc:
         view:
             # 视图访问路径前缀
-            prefix: /
+            prefix: /WEB-INF/jsp/
             # 视图访问路径后缀
             suffix: .jsp
         # Path pattern used for static resources,TODO

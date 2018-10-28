@@ -73,13 +73,15 @@ public class HATEOASController {
     }
 
     /**
-     * JXML响应风格
+     * XML响应风格
      *
      * @return
      */
-    @GetMapping(value = "/xml", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/xml", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public User getUserXMLForm() {
         User user = new User();
+        user.setId(1);
+        user.setAge(25);
         user.setSex("female");
         user.setUsername("xml");
         return user;

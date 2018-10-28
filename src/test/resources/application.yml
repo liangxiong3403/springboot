@@ -1,0 +1,24 @@
+server:
+    port: 9999
+lx:
+    # 定义数组
+    favorite:
+        numbers: 6,8,10
+    # 获取uuid
+    uuid:
+        ${random.uuid}
+    # 获取范围内int
+    number:
+        in:
+            range: ${random.int[10,20]}
+    # 配置属性列表,等同于lx.websites=www.liangxiong.com,www.liangxiong.cn
+    websites:
+        - www.liangxiong.cn
+        - www.liangxiong.com
+# security相关配置
+security:
+    user:
+        # 登录账号
+        name: admin
+        # 登陆密码
+        password: 123456

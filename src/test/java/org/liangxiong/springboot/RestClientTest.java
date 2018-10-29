@@ -1,5 +1,6 @@
 package org.liangxiong.springboot;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.liangxiong.springboot.entity.School;
@@ -12,13 +13,14 @@ import org.springframework.web.client.RestTemplate;
  * @author liangxiong
  * Date:2018-10-28
  * Time:10:11
- * @Description 测试RestTemplate,TODO
+ * @Description 测试RestTemplate, TODO
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RestClientTest {
 
     @Test
+    @Ignore("wait for completing")
     @WithMockUser(username = "admin", password = "123456", authorities = {"ROLE_ADMIN"})
     public void testClient() {
         RestTemplate template = new RestTemplate();

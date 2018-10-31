@@ -67,3 +67,6 @@ security:
         client:
             client-id: liangxiong
             client-secret: 111111
+    # 关闭Spring Security安全认证
+    basic:
+        enabled: false

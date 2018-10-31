@@ -39,6 +39,8 @@ spring:
         properties:
             hibernate:
                 format_sql: true
+        # disable Open EntityManager in View
+        open-in-view: false
     #设置编码格式
     http:
         encoding:

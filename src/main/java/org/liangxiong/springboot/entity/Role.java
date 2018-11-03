@@ -46,6 +46,12 @@ public class Role implements Serializable {
     private String description;
 
     /**
+     * 表示是否被删除
+     */
+    @Column(name = "is_deleted")
+    private boolean delete;
+
+    /**
      * 一个角色可以对应多个用户
      */
     @JSONField(serialize = false)
@@ -58,6 +64,7 @@ public class Role implements Serializable {
                 "id=" + id +
                 ", roleName='" + roleName + '\'' +
                 ", description='" + description + '\'' +
+                ", delete=" + delete +
                 '}';
     }
 }

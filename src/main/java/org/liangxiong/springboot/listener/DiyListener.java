@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
  * @Description
  */
 @WebListener
-public class DitListener implements ServletRequestListener {
+public class DiyListener implements ServletRequestListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(DitListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(DiyListener.class);
 
     @Override
     public void requestInitialized(ServletRequestEvent sre) {

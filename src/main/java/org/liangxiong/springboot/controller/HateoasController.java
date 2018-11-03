@@ -25,7 +25,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
  */
 @RestController
 @RequestMapping("/rest")
-public class HATEOASController {
+public class HateoasController {
 
     @Bean
     private School currentSchool() {
@@ -68,7 +68,7 @@ public class HATEOASController {
     @GetMapping("/hateoas/school")
     public School getSchoolHATEOASForm(@RequestParam String name) {
         school.setName(name);
-        school.add(linkTo(methodOn(HATEOASController.class).getSchoolHATEOASForm(name)).withSelfRel());
+        school.add(linkTo(methodOn(HateoasController.class).getSchoolHATEOASForm(name)).withSelfRel());
         return school;
     }
 

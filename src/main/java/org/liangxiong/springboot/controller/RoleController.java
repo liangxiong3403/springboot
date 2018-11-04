@@ -14,11 +14,10 @@ import java.util.Map;
  * @author liangxiong
  * @Date:2018-11-03
  * @Time:9:50
- * @Description 测试原生JDBC
+ * @Description 测试原生JDBC/MyBatis/JPA
  */
 @RestController
-@RequestMapping("/jdbc")
-public class JdbcController {
+public class RoleController {
 
     @Autowired
     private IRoleService roleService;
@@ -28,7 +27,7 @@ public class JdbcController {
      *
      * @return
      */
-    @GetMapping("/roles")
+    @GetMapping("/jdbc/roles")
     public List<Map<String, Object>> listRoles() {
         return roleService.listRoles();
     }
@@ -39,7 +38,7 @@ public class JdbcController {
      * @param id 角色id
      * @return
      */
-    @GetMapping("/roles/{id}")
+    @GetMapping("/jdbc/roles/{id}")
     public List<Map<String, Object>> selectRoleById(@PathVariable Integer id) {
         return roleService.selectRoleById(id);
     }
@@ -51,7 +50,7 @@ public class JdbcController {
      * @param role JSON数据
      * @return
      */
-    @PostMapping("/roles")
+    @PostMapping("/jdbc/roles")
     public JSONObject insertRole(@RequestBody Role role) {
         return MessageUtil.getExecuteResult(roleService.insertRole(role));
     }
@@ -62,7 +61,7 @@ public class JdbcController {
      * @param role JSON数据
      * @return
      */
-    @PutMapping("/roles")
+    @PutMapping("/jdbc/roles")
     public JSONObject updateRole(@RequestBody Role role) {
         return MessageUtil.getExecuteResult(roleService.updateRole(role));
     }
@@ -73,7 +72,7 @@ public class JdbcController {
      * @param id 角色id
      * @return
      */
-    @DeleteMapping("/roles/{id}")
+    @DeleteMapping("/jdbc/roles/{id}")
     public JSONObject deleteRoleById(@PathVariable Integer id) {
         return MessageUtil.getExecuteResult(roleService.deleteRoleById(id));
     }
@@ -83,9 +82,20 @@ public class JdbcController {
      *
      * @return
      */
-    @GetMapping("/meta/transaction/supported")
+    @GetMapping("/jdbc/meta/transaction/supported")
     public boolean supportedTransaction() {
         return roleService.supportedTransaction();
+    }
+
+    /**
+     * 通过角色名称查询角色
+     *
+     * @param roleName 角色名称
+     * @return
+     */
+    @GetMapping("/mybatis/{roleName}")
+    public Role selectByRoleName(@PathVariable String roleName) {
+        return roleService.selectByRoleName(roleName);
     }
 
 }

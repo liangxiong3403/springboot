@@ -102,3 +102,14 @@ security:
 endpoints:
     shutdown:
         enabled: true
+# MyBatis相关配置
+mybatis:
+    # Locations of MyBatis mybatis files.
+    mapper-locations: classpath:mybatis/*.xml
+    # 是否检查配置的XML文件
+    check-config-location: true
+    # 配置Java属性和数据库字段驼峰命名映射(针对Annotation和XML都有效)
+#    configuration:
+#        map-underscore-to-camel-case: true
+    config-location: classpath:mybatis/mybatis-config.xml
+

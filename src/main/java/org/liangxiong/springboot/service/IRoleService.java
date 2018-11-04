@@ -58,4 +58,12 @@ public interface IRoleService {
      * @return
      */
     boolean supportedTransaction();
+
+    /**
+     * 通过角色名称查询角色
+     *
+     * @param roleName 角色名称
+     * @return
+     */
+    Role selectByRoleName(String roleName);
 }

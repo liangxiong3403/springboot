@@ -1,6 +1,7 @@
 package org.liangxiong.springboot.service.impl;
 
 import org.liangxiong.springboot.entity.Role;
+import org.liangxiong.springboot.mapper.RoleMapper;
 import org.liangxiong.springboot.service.IRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,9 @@ public class RoleServiceImpl implements IRoleService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
 
@@ -120,6 +124,11 @@ public class RoleServiceImpl implements IRoleService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Role selectByRoleName(String roleName) {
+        return roleMapper.selectByRoleName(roleName);
     }
 
     private List<Map<String, Object>> executeQuery(String sql, Integer id) {

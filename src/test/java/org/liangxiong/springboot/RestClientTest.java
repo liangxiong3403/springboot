@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.liangxiong.springboot.entity.School;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +20,6 @@ public class RestClientTest {
 
     @Test
     @Ignore("wait for completing")
-    @WithMockUser(username = "admin", password = "123456", authorities = {"ROLE_ADMIN"})
     public void testClient() {
         RestTemplate template = new RestTemplate();
         School person = template.getForObject("http://localhost:9999/rest/json/school", School.class);

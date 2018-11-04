@@ -20,6 +20,6 @@ public interface RoleMapper {
      * @param roleName 角色名称
      * @return
      */
-    @Select("SELECT id, role_name, is_deleted, description FROM t_role WHERE role_name = #{roleName}")
+//    @Select("SELECT id, role_name, is_deleted, description FROM t_role WHERE role_name = #{roleName}")
     Role selectByRoleName(@Param("roleName") String roleName);
 }

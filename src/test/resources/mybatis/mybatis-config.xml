@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="mybatis/mybatis.properties" />
+    <!-- 引入外部配置文件 -->
+    <properties resource="mybatis/mybatis.properties"/>
+    <typeAliases>
+        <!-- 给一个包下面所有类设置别名 -->
+        <package name="org.liangxiong.springboot.entity"/>
+    </typeAliases>
     <environments default="development">
+        <!-- 开发环境 -->
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
@@ -14,6 +18,7 @@
                 <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
+        <!-- 生产环境 -->
         <environment id="production">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
@@ -24,8 +29,8 @@
             </dataSource>
         </environment>
     </environments>
-    <databaseIdProvider type="DB_VENDOR" />
     <mappers>
-        <mapper class="org.liangxiong.springboot.mapper.RoleMapper"/>
+        <!-- 实体相关配置文件 -->
+        <mapper resource="mappers/Role.xml"/>
     </mappers>
 </configuration>

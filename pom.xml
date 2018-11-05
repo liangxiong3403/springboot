@@ -150,7 +150,7 @@
     </dependencies>
 
     <build>
-        <finalName>springboot</finalName>
+        <finalName>${project.name}-${current.time}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -173,6 +173,28 @@
                         <version>5.1.47</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>current.time</name>
+                    <pattern>yyyyMMddHHmmss</pattern>
+                    <timeZone>GMT+8</timeZone>
+                    <regex/>
+                    <source/>
+                    <value/>
+                    <fileSet/>
+                </configuration>
             </plugin>
         </plugins>
     </build>

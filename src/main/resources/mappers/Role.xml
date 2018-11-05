@@ -4,7 +4,7 @@
     <resultMap type="Role" id="roleMap">
         <id column="id" property="id"/>
         <result column="role_name" property="roleName"/>
-        <!--<result column="description" property="description"/>-->
+        <result column="description" property="description"/>
         <result column="is_deleted" property="delete"/>
     </resultMap>
     <select id="selectByRoleName" resultMap="roleMap">

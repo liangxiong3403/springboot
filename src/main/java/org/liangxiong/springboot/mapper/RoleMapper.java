@@ -1,8 +1,6 @@
 package org.liangxiong.springboot.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.liangxiong.springboot.entity.Role;
 
 /**
@@ -20,6 +18,7 @@ public interface RoleMapper {
      * @param roleName 角色名称
      * @return
      */
-//    @Select("SELECT id, role_name, is_deleted, description FROM t_role WHERE role_name = #{roleName}")
+    ///@Select("SELECT id, role_name, is_deleted, description FROM t_role WHERE role_name = #{roleName}")
+    ///@Results({@Result(column = "role_name", property = "roleName"), @Result(column = "is_deleted", property = "delete")})
     Role selectByRoleName(@Param("roleName") String roleName);
 }

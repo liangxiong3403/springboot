@@ -15,11 +15,12 @@ import java.io.Serializable;
  * @author liangxiong
  * Date:2018-10-08
  * Time:20:32
- * @Description 用户实体类
+ * @Description 用户实体类,Access指定注入类型
  */
 @Entity
 @Getter
 @Setter
+@Access(AccessType.FIELD)
 @NoArgsConstructor
 @Table(name = "t_user")
 public class User implements Serializable {

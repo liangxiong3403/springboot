@@ -15,11 +15,12 @@ import java.util.Set;
  * @author liangxiong
  * Date:2018-10-08
  * Time:20:41
- * @Description 角色实体
+ * @Description 角色实体,Access指定注入类型
  */
 @Entity
 @Getter
 @Setter
+@Access(AccessType.FIELD)
 @NoArgsConstructor
 @Table(name = "t_role")
 public class Role implements Serializable {

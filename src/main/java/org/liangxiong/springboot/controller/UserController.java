@@ -21,6 +21,12 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 通过id获取用户
+     *
+     * @param userId 用户d
+     * @return
+     */
     @GetMapping("/{userId}")
     public User findOne(@PathVariable("userId") Integer userId) {
         return userService.findOne(userId);

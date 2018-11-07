@@ -31,10 +31,10 @@ public class CustomizationServer implements EmbeddedServletContainerCustomizer {
         // 修改容器端口,优先级高于application.properties
         container.setPort(9999);
         // 解决客户端404错误,出现404错误时访问/404请求
-        ErrorPage errorPage = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
-        Set<ErrorPage> errorPages = new HashSet<>(4);
-        errorPages.add(errorPage);
-        container.setErrorPages(errorPages);
+        ///ErrorPage errorPage = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
+        ///Set<ErrorPage> errorPages = new HashSet<>(4);
+        ///errorPages.add(errorPage);
+        ///container.setErrorPages(errorPages);
         if (container instanceof TomcatEmbeddedServletContainerFactory) {
             TomcatEmbeddedServletContainerFactory factory = TomcatEmbeddedServletContainerFactory.class.cast(container);
             // 修改Tomcat的HTTP协议

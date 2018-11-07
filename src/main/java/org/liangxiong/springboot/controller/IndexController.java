@@ -7,16 +7,20 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+
+import javax.validation.constraints.Size;
 
 /**
  * @author liangxiong
  * Date:2018-10-04
  * Time:22:03
- * @Description 模板引擎测试类
+ * @Description 测试相关非功能性API
  */
+@Validated
 @Controller
 public class IndexController {
 
@@ -101,7 +105,7 @@ public class IndexController {
      */
     @GetMapping("/template")
     @ResponseBody
-    public School testClient() {
+    public School requestFromRemoteServer( String name) {
         // 通过SpringBoot提供地RestTemplateBuilder进行RestTemplate的自定义
         RestTemplate restTemplate = builder.basicAuthorization("admin", "123456").build();
         return restTemplate.getForObject("http://localhost:9999/rest/json/school", School.class);

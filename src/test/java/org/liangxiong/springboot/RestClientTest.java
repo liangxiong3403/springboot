@@ -23,10 +23,6 @@ public class RestClientTest {
     @Autowired
     private RestTemplateBuilder builder;
 
-    public void init() {
-        System.out.println("init");
-    }
-
     @Test
     public void testClient() {
         // 获取带有认证信息地restTemplate

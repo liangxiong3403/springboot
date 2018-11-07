@@ -3,10 +3,7 @@ package org.liangxiong.springboot.controller;
 import org.liangxiong.springboot.entity.User;
 import org.liangxiong.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author liangxiong
@@ -30,6 +27,17 @@ public class UserController {
     @GetMapping("/{userId}")
     public User findOne(@PathVariable("userId") Integer userId) {
         return userService.findOne(userId);
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping
+    public User addUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
 }

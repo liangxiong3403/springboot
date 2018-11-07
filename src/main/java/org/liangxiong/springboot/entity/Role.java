@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.liangxiong.springboot.listener.RoleListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -15,11 +16,12 @@ import java.util.Set;
  * @author liangxiong
  * Date:2018-10-08
  * Time:20:41
- * @Description 角色实体,Access指定注入类型
+ * @Description 角色实体, Access指定注入类型;EntityListeners行为化监听
  */
 @Entity
 @Getter
 @Setter
+@EntityListeners(RoleListener.class)
 @Access(AccessType.FIELD)
 @NoArgsConstructor
 @Table(name = "t_role")

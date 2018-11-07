@@ -3,6 +3,7 @@ package org.liangxiong.springboot.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.liangxiong.springboot.listener.RoleListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,11 +16,12 @@ import java.io.Serializable;
  * @author liangxiong
  * Date:2018-10-08
  * Time:20:32
- * @Description 用户实体类,Access指定注入类型
+ * @Description 用户实体类, Access指定注入类型;EntityListeners行为化监听
  */
 @Entity
 @Getter
 @Setter
+@EntityListeners(RoleListener.class)
 @Access(AccessType.FIELD)
 @NoArgsConstructor
 @Table(name = "t_user")
@@ -58,7 +60,7 @@ public class User implements Serializable {
      * 关系：多个用户对应于一个角色
      */
     @JoinColumn(name = "role_id")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, optional = false)
     private Role role;
 
     @Override
@@ -72,3 +74,4 @@ public class User implements Serializable {
                 '}';
     }
 }
+

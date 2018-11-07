@@ -30,17 +30,19 @@ spring:
         filters: stat, wall, log4j
     #JPA配置
     jpa:
-        database: MySQL
+        # 数据库方言
+        databasePlatform: org.hibernate.dialect.MySQL5Dialect
+        # 数据库名称
+        database: MYSQL
+        # 控制台打印SQL语句
         show-sql: true
         hibernate:
-            ddl-auto: none
+            ddl-auto: create
             naming:
-                strategy: org.hibernate.cfg.ImprovedNamingStrategy
+                implicitStrategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         properties:
             hibernate:
                 format_sql: true
-        # disable Open EntityManager in View
-        open-in-view: false
     #设置编码格式
     http:
         encoding:

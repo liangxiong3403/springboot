@@ -3,7 +3,7 @@ spring:
     datasource:
         # 引入druid
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://127.0.0.1:3306/springboot?characterEncoding=utf8&useSSL=false
         driverClassName: com.mysql.jdbc.Driver
         username: root
         password: admin
@@ -37,7 +37,7 @@ spring:
         # 控制台打印SQL语句
         show-sql: true
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
             naming:
                 implicitStrategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         properties:

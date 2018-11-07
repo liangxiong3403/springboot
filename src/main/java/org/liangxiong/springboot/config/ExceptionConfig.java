@@ -32,7 +32,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
      * @param ex
      * @return
      */
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(Exception.class)
     @ResponseBody
     ResponseEntity<?> handleControllerException(HttpServletRequest request, Exception ex) {
         // 异常信息记录到日志文件

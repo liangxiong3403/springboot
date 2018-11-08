@@ -98,4 +98,11 @@ public class RoleController {
         return roleService.selectByRoleName(roleName);
     }
 
+    /**
+     * 测试spring-retry模块功能
+     */
+    @GetMapping("/retry/roles")
+    public void retryOnException() {
+        roleService.retryOnException();
+    }
 }

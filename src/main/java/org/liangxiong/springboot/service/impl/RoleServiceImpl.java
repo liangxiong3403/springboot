@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -173,5 +176,25 @@ public class RoleServiceImpl implements IRoleService {
             }
         }
         return result;
+    }
+
+    /**
+     * 测试spring-retry模块功能
+     */
+    @Override
+    @Retryable(include = Exception.class, backoff = @Backoff(5000))
+    public void retryOnException() {
+        logger.info("test retry feature");
+        throw new RuntimeException("occur exception");
+    }
+
+    /**
+     * 重试调用结束后调用地方法
+     *
+     * @param e
+     */
+    @Recover
+    public void recover(Exception e) {
+        logger.info("meet exception: " + e.getClass().getName() + ",retry invocation end...");
     }
 }

@@ -66,4 +66,9 @@ public interface IRoleService {
      * @return
      */
     Role selectByRoleName(String roleName);
+
+    /**
+     * 测试spring-retry模块功能
+     */
+    void retryOnException();
 }

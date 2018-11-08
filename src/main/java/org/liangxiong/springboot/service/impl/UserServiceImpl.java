@@ -3,6 +3,8 @@ package org.liangxiong.springboot.service.impl;
 import org.liangxiong.springboot.entity.User;
 import org.liangxiong.springboot.repository.UserRepository;
 import org.liangxiong.springboot.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
     public <S extends User> S save(S entity) {
@@ -72,4 +76,5 @@ public class UserServiceImpl implements IUserService {
     public void deleteAll() {
         userRepository.deleteAll();
     }
+
 }

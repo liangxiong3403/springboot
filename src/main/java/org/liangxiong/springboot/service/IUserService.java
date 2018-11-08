@@ -10,4 +10,5 @@ import org.liangxiong.springboot.entity.User;
  */
 public interface IUserService extends IBaseService<User> {
 
+
 }

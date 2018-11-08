@@ -30,7 +30,7 @@ public class EmailController {
     @Bean
     public Mailer mailer() {
         return MailerBuilder
-                .withSMTPServer("smtp.qq.com", 25, "1071608617@qq.com", "zhrckilpzqjbbdbj")
+                .withSMTPServer("smtp.qq.com", 25, "1071608617@qq.com", "password")
                 .buildMailer();
     }
 

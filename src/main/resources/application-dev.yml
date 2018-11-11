@@ -28,6 +28,18 @@ spring:
         testOnReturn: false
         #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
         filters: stat, wall, log4j
+    data:
+        elasticsearch:
+            properties:
+                # 配置Elasticsearch安装根路径,也引用使用环境变量(当前SpringBoot兼容的Elasticsearch版本通过mvn dependency:tree查看)
+                path:
+                    home: E:\development\elasticsearch-2.4.6
+                # 配置Elasticsearch配置文件使用的节点名称
+                hostname: DESKTOP-4B9JQ0A
+    # Redis配置
+    redis:
+        host: 127.0.0.1
+        port: 6379
     #JPA配置
     jpa:
         # 数据库方言
@@ -117,4 +129,5 @@ mybatis:
     # 配置Java属性和数据库字段驼峰命名映射(针对Annotation和XML都有效)
     configuration:
         map-underscore-to-camel-case: true
+
 

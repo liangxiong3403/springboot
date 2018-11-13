@@ -1,6 +1,6 @@
 package org.liangxiong.springboot.config;
 
-import org.liangxiong.springboot.controller.CustomErrorType;
+import org.liangxiong.springboot.component.CustomErrorType;
 import org.liangxiong.springboot.controller.IndexController;
 import org.liangxiong.springboot.util.ExceptionUtil;
 import org.slf4j.Logger;

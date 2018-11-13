@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
     <!-- 定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
-    <property name="LOG_HOME" value="./logs"/>
+    <property name="LOG_HOME" value="${user.dir}\\logs"/>
     <!--
         系统处于哪种环境(Use the name attribute to specify which profile accepts the configuration)
         属于存储位置(You can use the scope attribute if you need to store the property somewhere other than in local scope)
@@ -33,10 +33,33 @@
             <MaxFileSize>5MB</MaxFileSize>
         </triggeringPolicy>
     </appender>
+    <!-- Email输出 -->
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <!-- 邮件服务器主机 -->
+        <smtpHost>smtp.qq.com</smtpHost>
+        <!-- 邮件服务器端口 -->
+        <smtpPort>25</smtpPort>
+        <!-- 用户名 -->
+        <username>3521392244@qq.com</username>
+        <!-- 密码 -->
+        <password>wrbmzrskmagddabc</password>
+        <!-- 收件人(可以多个) -->
+        <to>scliangxiong@gmail.com</to>
+        <!-- 发件人 -->
+        <from>3521392244@qq.com</from>
+        <!-- 邮件主题 -->
+        <subject>SpringBoot系统异常日志</subject>
+        <!-- 内容布局格式 -->
+        <layout class="ch.qos.logback.classic.html.HTMLLayout">
+            <pattern>%date %-5level %logger{35} - %message%n</pattern>
+        </layout>
+    </appender>
 
     <!-- 日志输出级别(全局配置) -->
     <root level="info">
+        <!-- 开启控制台输出 -->
         <appender-ref ref="STDOUT"/>
+        <!-- 开启日志文件输出 -->
         <appender-ref ref="FILE"/>
     </root>
 </configuration>

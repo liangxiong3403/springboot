@@ -1,4 +1,4 @@
-package org.liangxiong.springboot.controller;
+package org.liangxiong.springboot.component;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

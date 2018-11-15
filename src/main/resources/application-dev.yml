@@ -75,6 +75,36 @@ spring:
         static-locations: classpath:/static/
     velocity:
         resource-loader-path: classpath:/velocity/
+    # Kafka配置
+    kafka:
+        # 生产者配置
+        producer:
+            # Kafka集群地址
+            bootstrap-servers: 192.168.1.8:9092,192.168.1.9:9092,192.168.1.10:9092
+            # 客户端id
+            client-id: KafkaProducer
+            # 消息确认方式,需要leaderQuery
+            acks: 1
+            # key序列化类
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            # value序列化类
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        # 消费者配置
+        consumer:
+            # Kafka集群地址
+            bootstrap-servers: 192.168.1.8:9092,192.168.1.9:9092,192.168.1.10:9092
+            # 消息自动提交
+            enable-auto-commit: true
+            # 消费者所属group
+            group-id: KafkaConsumer
+            # 消息自动提交间隔时间
+            auto-commit-interval: 1000
+            # key反序列化类
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            # value反序列化类
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            # 客户端id
+            client-id: liangxiong
 #web容器的端口号和编码配置
 server:
     #修改Tomcat端口号,默认端口号8080

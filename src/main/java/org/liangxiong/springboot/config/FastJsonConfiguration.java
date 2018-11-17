@@ -5,9 +5,11 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,6 +38,8 @@ public class FastJsonConfiguration extends WebMvcConfigurerAdapter {
                 // SerializerFeature.DisableCircularReferenceDetect禁用循环引用检测
                 SerializerFeature.DisableCircularReferenceDetect);
         fastConverter.setFastJsonConfig(config);
+        //解决异常:Content-Type cannot contain wildcard type '*'
+        fastConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON_UTF8, MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_XHTML_XML));
         converters.add(fastConverter);
     }
 }

@@ -88,7 +88,7 @@ spring:
             # key序列化类
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             # value序列化类
-            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.liangxiong.springboot.component.ObjectSerializer
         # 消费者配置
         consumer:
             # Kafka集群地址
@@ -102,7 +102,7 @@ spring:
             # key反序列化类
             key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
             # value反序列化类
-            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.liangxiong.springboot.component.ObjectDeserializer
             # 客户端id
             client-id: liangxiong
 #web容器的端口号和编码配置

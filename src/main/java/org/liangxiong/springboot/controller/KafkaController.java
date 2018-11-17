@@ -1,5 +1,7 @@
 package org.liangxiong.springboot.controller;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.liangxiong.springboot.entity.Fruit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,14 @@ import java.util.concurrent.TimeoutException;
 @RequestMapping("/kafka/message")
 public class KafkaController {
 
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-    private String message;
+    @Autowired
+    public KafkaController(KafkaTemplate kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    private Object object;
 
     private static final Logger logger = LoggerFactory.getLogger(KafkaController.class);
 
@@ -37,11 +43,34 @@ public class KafkaController {
      * @param key   消息key
      * @param value 消息value
      */
-    @PostMapping
-    public Integer sendMessage(@RequestParam String topic, @RequestParam String key, @RequestParam String value) {
-        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, key, value);
+    @PostMapping("/simple")
+    public Integer sendStringMessage(@RequestParam String topic, @RequestParam String key, @RequestParam String value) {
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, key, value);
         try {
-            SendResult<String, String> sendResult = future.get(5, TimeUnit.SECONDS);
+            SendResult<String, Object> sendResult = future.get(5, TimeUnit.SECONDS);
+            return sendResult.getRecordMetadata().partition();
+        } catch (InterruptedException e) {
+            logger.error("线程被中断");
+        } catch (ExecutionException e) {
+            logger.error("任务执行异常");
+        } catch (TimeoutException e) {
+            logger.error("任务执行超时");
+        }
+        return null;
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param topic 消息主题
+     * @param key   消息key
+     * @param fruit 消息value
+     */
+    @PostMapping("/object")
+    public Integer sendObjectMessage(@RequestParam String topic, @RequestParam String key, @RequestBody Fruit fruit) {
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, key, fruit);
+        try {
+            SendResult<String, Object> sendResult = future.get(5, TimeUnit.SECONDS);
             return sendResult.getRecordMetadata().partition();
         } catch (InterruptedException e) {
             logger.error("线程被中断");
@@ -56,11 +85,13 @@ public class KafkaController {
     /**
      * 监听特定主题的消息
      *
-     * @param message
+     * @param object
      */
     @KafkaListener(topics = "test")
-    public void processMessage(String message) {
-        this.message = message;
+    public void processMessage(Object object) {
+        if (object instanceof ConsumerRecord) {
+            this.object = ((ConsumerRecord) object).value();
+        }
     }
 
     /**
@@ -69,7 +100,7 @@ public class KafkaController {
      * @return
      */
     @GetMapping
-    public String receiveMessage() {
-        return message;
+    public Object receiveMessage() {
+        return object;
     }
 }

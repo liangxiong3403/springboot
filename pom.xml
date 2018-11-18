@@ -169,11 +169,19 @@
             <artifactId>jna</artifactId>
             <scope>runtime</scope>
         </dependency>-->
+        <!-- Kafka相关依赖 -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
+        <!-- Apache validator -->
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.6</version>
+        </dependency>
 
+        <!-- Swagger TODO -->
 
     </dependencies>
 

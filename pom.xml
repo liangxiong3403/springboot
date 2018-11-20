@@ -146,6 +146,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.2</version>
         </dependency>
+        <!-- PageHelper相关依赖 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
+        </dependency>
         <!-- Mail相关依赖 -->
         <dependency>
             <groupId>org.simplejavamail</groupId>
@@ -191,7 +197,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration></configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

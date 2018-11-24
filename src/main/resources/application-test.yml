@@ -72,8 +72,8 @@ security:
             client-id: liangxiong
             client-secret: 111111
     # 关闭Spring Security安全认证
-    basic:
-        enabled: false
+            basic:
+                enabled: false
 # MyBatis相关配置
 mybatis:
     # Locations of MyBatis mappers files.

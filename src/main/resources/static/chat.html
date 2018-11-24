@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+    <!-- 引入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+聊天内容:
+<textarea id="chat_content" readonly="readonly" style="height: 200px;width: 200px">
+
+</textarea>
+<button id="btn_clear">清空聊天内容</button>
+<br/>
+用户名称:<input id="chat_username" value="" style="height: 20px;width: 200px"/>
+<button id="btn_connect">加入聊天室</button>
+<button id="btn_disconnect">退出聊天室</button>
+<br/>
+消息内容:
+<input id="chat_message" value="" style="height: 20px;width: 200px">
+<button id="btn_send">发送</button>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // 路径前缀
+        var url_prefix = "ws://localhost:9999/webSocket/server/";
+        var ws = null;
+        // 建立连接
+        $("#btn_connect").click(function () {
+            var username = $("#chat_username").val();
+            var url = url_prefix + username;
+            ws = new WebSocket(url);
+            ws.onmessage = function (event) {
+                // 接收消息
+                $("#chat_content").append(event.data + "\n");
+            };
+            ws.onclose = function (event) {
+                $("#chat_content").append("用户[" + username + "]已经退出");
+            }
+        });
+        // 发送消息
+        $("#btn_send").click(function () {
+            var message = $("#chat_message").val();
+            if (ws) {
+                // 客户端向服务器发送消息
+                ws.send(message);
+            }
+        });
+        // 关闭连接
+        $("#btn_disconnect").click(function () {
+            if (ws) {
+                ws.close();
+            }
+        });
+        // 清空聊天内容
+        $("#btn_clear").click(function () {
+            $("#chat_content").text("");
+        });
+    })
+</script>
+</body>
+</html>

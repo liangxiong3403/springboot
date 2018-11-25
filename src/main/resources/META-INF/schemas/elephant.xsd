@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://liangxiong.org/schemas" xmlns="http://liangxiong.org/schemas">
+    <!-- 大象实体 -->
+    <xs:complexType name="Elephant">
+        <!-- 按照顺序定义属性 -->
+        <xs:sequence>
+            <!-- 主键id -->
+            <!-- minOccurs表示最少出现次数,默认为1;maxOccurs表示最大出现次数,默认为1 -->
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="age" type="xs:int" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ElephantIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="elephantId" type="xs:long"/>
+                <xs:element name="timestamp" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ElephantResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="elephant" type="Elephant"/>
+                <xs:element name="timestamp" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

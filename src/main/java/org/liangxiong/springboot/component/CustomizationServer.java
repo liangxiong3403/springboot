@@ -1,16 +1,10 @@
 package org.liangxiong.springboot.component;
 
-import org.apache.coyote.http11.Http11Nio2Protocol;
+import org.apache.coyote.http11.Http11NioProtocol;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.web.servlet.ErrorPage;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author liangxiong
@@ -38,7 +32,7 @@ public class CustomizationServer implements EmbeddedServletContainerCustomizer {
         if (container instanceof TomcatEmbeddedServletContainerFactory) {
             TomcatEmbeddedServletContainerFactory factory = TomcatEmbeddedServletContainerFactory.class.cast(container);
             // 修改Tomcat的HTTP协议
-            factory.setProtocol(Http11Nio2Protocol .class.getName());
+            factory.setProtocol(Http11NioProtocol.class.getName());
         }
     }
 

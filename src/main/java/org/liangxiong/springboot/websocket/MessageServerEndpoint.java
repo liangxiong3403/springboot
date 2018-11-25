@@ -46,7 +46,7 @@ public class MessageServerEndpoint {
      * @param message
      */
     @OnMessage
-    public void onMessage(@PathParam("username") String username, Session session, String message) {
+    public void onMessage(@PathParam("username") String username, String message) {
         logger.info("message: {}", message);
         sendMessageForEachSession("用户[" + username + "]: " + message);
     }

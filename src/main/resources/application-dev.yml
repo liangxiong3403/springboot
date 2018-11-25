@@ -105,6 +105,8 @@ spring:
             value-deserializer: org.liangxiong.springboot.component.ObjectDeserializer
             # 客户端id
             client-id: liangxiong
+    webservices:
+        path: /
 #web容器的端口号和编码配置
 server:
     #修改Tomcat端口号,默认端口号8080

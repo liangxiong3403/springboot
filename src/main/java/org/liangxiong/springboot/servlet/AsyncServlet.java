@@ -21,20 +21,19 @@ public class AsyncServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 启动异步上下文(不调用则报错:java.lang.IllegalStateException: It is illegal to call this method if the current request is not in asynchronous mode (i.e. isAsyncStarted() returns false))
-        AsyncContext asyncContext = request.startAsync();
+        AsyncContext asyncContext = request.startAsync(request, response);
         // 设置响应文本内容
         response.setContentType("text/html;charset=utf-8");
         // 获取应用上下文
         final ServletContext servletContext = request.getServletContext();
         // 获取流
         Writer writer = response.getWriter();
-        writer.write(threadInfo(request));
+        writer.write("异步调用开始");
+        writer.write("线程信息: " + threadInfo(request));
         // 添加监听器,监听异步事件
         asyncContext.addListener(new AsyncListener() {
             @Override
             public void onComplete(AsyncEvent event) throws IOException {
-                HttpServletResponse response = (HttpServletResponse) asyncContext.getResponse();
-                Writer writer = response.getWriter();
                 writer.write("onComplete: " + threadInfo((HttpServletRequest) event.getSuppliedRequest()));
             }
 
@@ -62,6 +61,8 @@ public class AsyncServlet extends HttpServlet {
                 servletContext.log("async start error");
             }
         });
+        asyncContext.complete();
+        writer.write("异步调用结束");
     }
 
     private String threadInfo(HttpServletRequest request) {

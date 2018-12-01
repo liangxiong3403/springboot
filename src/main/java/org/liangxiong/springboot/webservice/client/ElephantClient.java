@@ -26,7 +26,7 @@ public class ElephantClient {
         request.setElephantId(3L);
         request.setTimestamp(Instant.now().toEpochMilli());
         // 发送请求
-        ElephantResponse response = (ElephantResponse) webServiceTemplate.marshalSendAndReceive("http://localhost:9999/web-service/elephant", request);
+        ElephantResponse response = (ElephantResponse) webServiceTemplate.marshalSendAndReceive("http://localhost:9999/services/web-service/elephant", request);
         System.out.println("response: " + response);
     }
 }

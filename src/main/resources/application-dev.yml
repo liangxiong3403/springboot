@@ -106,13 +106,19 @@ spring:
             # 客户端id
             client-id: liangxiong
     webservices:
-        path: /
+        # 路径最好不要是/,容易影响其他接口访问
+        path: /services
+    thymeleaf:
+        # 关闭thymeleaf缓存
+        cache: false
 #web容器的端口号和编码配置
 server:
     #修改Tomcat端口号,默认端口号8080
     port: 8086
 management:
     port: 9001
+    security:
+        enabled: false
 lx:
     # 定义数组
     favorite:

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>XSS攻击测试页面</title>
+</head>
+<body>
+js代码:
+<div th:text="${jsCode}"></div>
+<br/>
+html代码:
+<div th:utext="${htmlCode}"></div>
+<script type="text/javascript">
+    alert('hello');
+</script>
+</body>
+</html>

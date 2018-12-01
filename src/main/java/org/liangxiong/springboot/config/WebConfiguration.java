@@ -3,6 +3,7 @@ package org.liangxiong.springboot.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -37,6 +38,22 @@ public class WebConfiguration {
                     .allowCredentials(false)
                     // 客户端缓存前一个响应时间
                     .maxAge(3600);
+            }
+        };
+    }
+
+    /**
+     * 视图转发配置
+     */
+    @Bean
+    public WebMvcConfigurer viewConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                // 设置iframe父页面
+                registry.addViewController("/iframe/parent").setViewName("iframe-parent");
+                // 设置iframe子页面
+                registry.addViewController("/iframe/child").setViewName("iframe-child");
             }
         };
     }

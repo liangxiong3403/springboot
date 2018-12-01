@@ -39,7 +39,7 @@ public class FastJsonConfiguration extends WebMvcConfigurerAdapter {
                 SerializerFeature.DisableCircularReferenceDetect);
         fastConverter.setFastJsonConfig(config);
         //解决异常:Content-Type cannot contain wildcard type '*'
-        fastConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON_UTF8, MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_XHTML_XML));
+        fastConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON_UTF8, MediaType.TEXT_HTML, MediaType.APPLICATION_XML, MediaType.APPLICATION_XHTML_XML, MediaType.TEXT_PLAIN));
         converters.add(fastConverter);
     }
 }

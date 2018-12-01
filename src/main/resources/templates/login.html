@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录页面</title>
+    <script src="https://start.spring.io/js/start.js"/>
+    <script src="http://i1.haidii.com/v/1512114213/i1/js/dict.min.js"/>
+</head>
+<body>
+<form id="form" action="/security/process" method="post">
+    <label>用户名</label><input name="username" type="text" value=""/>
+    <label>密码</label><input name="password" type="password"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <div>
+        <input type="submit" value="登录"/>
+    </div>
+</form>
+</body>
+</html>

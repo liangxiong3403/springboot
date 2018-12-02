@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+    <!-- 通过java的API修改日志配置 -->
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="STDOUT2" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %X{requestURI} - %m%n"/>
+        </layout>
+    </appender>
+    <!-- 局部日志配置;additivity:不重复打印日志 -->
+    <logger name="org.liangxiong.springboot.log.Log4jTest" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="STDOUT2"/>
+    </logger>
+    <!-- 全局日志级别配置 -->
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</log4j:configuration>

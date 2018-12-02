@@ -1,4 +1,4 @@
-package org.liangxiong.springboot;
+package org.liangxiong.springboot.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;

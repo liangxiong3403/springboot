@@ -1,4 +1,4 @@
-package org.liangxiong.springboot;
+package org.liangxiong.springboot.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

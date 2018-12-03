@@ -1,18 +1,42 @@
 package org.liangxiong.springboot.mbean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.management.*;
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * @author liangxiong
  * @Date:2018-12-02
  * @Time:20:34
  * @Description 简单数据 MBean实现类.(实现类和接口必须处于同一级别包下,否则报错:NotCompliantMBeanException)
  */
-public class SimpleData implements SimpleDataMBean {
+public class SimpleData extends NotificationBroadcasterSupport implements SimpleDataMBean, NotificationListener, NotificationFilter {
 
     private String data;
 
+    private static final AtomicLong sequenceNumber = new AtomicLong();
+
+    /**
+     * 注册通知监听器,监听发布地事件
+     */
+    public SimpleData() {
+        this.addNotificationListener(this, this, null);
+    }
+
+    private static final Logger logger = LoggerFactory.getLogger(SimpleData.class);
+
     @Override
     public void setData(String data) {
+        // 获取旧地值
+        String oldData = this.data;
+        // 设置新地值
         this.data = data;
+        // 实例化属性改变通知器
+        Notification notification = new AttributeChangeNotification(this, sequenceNumber.incrementAndGet(), System.currentTimeMillis(), "data has benn changed from " + oldData + " to " + data, "data", data.getClass().getName(), oldData, data);
+        // 发送事件
+        sendNotification(notification);
     }
 
     @Override
@@ -23,5 +47,39 @@ public class SimpleData implements SimpleDataMBean {
     @Override
     public String displayData() {
         return this.data;
+    }
+
+    /**
+     * 过滤指定通知事件
+     *
+     * @param notification
+     * @return
+     */
+    @Override
+    public boolean isNotificationEnabled(Notification notification) {
+        String attributeName = "data";
+        if (AttributeChangeNotification.class.isAssignableFrom(notification.getClass())) {
+            // 通知事件类型匹配
+            AttributeChangeNotification attributeChangeNotification = AttributeChangeNotification.class.cast(notification);
+            if (attributeName.equals(attributeChangeNotification.getAttributeName())) {
+                // 监听属性名称匹配
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 处理通知事件逻辑
+     *
+     * @param notification 通知事件
+     * @param handback
+     */
+    @Override
+    public void handleNotification(Notification notification, Object handback) {
+        AttributeChangeNotification attributeChangeNotification = (AttributeChangeNotification) notification;
+        String oldData = (String) attributeChangeNotification.getOldValue();
+        String newData = (String) attributeChangeNotification.getNewValue();
+        logger.info("AttributeChangeNotification oldData : {}, newData: {}", oldData, newData);
     }
 }

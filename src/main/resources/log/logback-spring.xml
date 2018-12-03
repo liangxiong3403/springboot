@@ -55,7 +55,10 @@
             <pattern>%date %-5level %logger{35} - %message%n</pattern>
         </layout>
     </appender>
-
+    <!-- 局部日志级别配置(优先级更高) -->
+    <logger name="org.liangxiong.springboot.mapper" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <!-- 日志输出级别(全局配置) -->
     <root level="INFO">
         <!-- 开启控制台输出 -->

@@ -14,7 +14,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!-- 格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>${prod} -- %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} | %highlight(%-5level) | %yellow(%thread) | %green(%logger) | %msg%n</pattern>
         </encoder>
     </appender>
     <!-- 按照每天生成日志文件 -->
@@ -27,7 +27,7 @@
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!-- 格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} | %highlight(%-5level) | %yellow(%thread) | %green(%logger) | %msg%n</pattern>
         </encoder>
         <!-- 日志文件最大的大小 -->
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
@@ -57,7 +57,7 @@
     </appender>
 
     <!-- 日志输出级别(全局配置) -->
-    <root level="info">
+    <root level="INFO">
         <!-- 开启控制台输出 -->
         <appender-ref ref="STDOUT"/>
         <!-- 开启日志文件输出 -->

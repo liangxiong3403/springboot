@@ -38,7 +38,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             // 内容安全策略CSP
             .headers()
             // 设置授权网站(允许Spring内容);script-src表示限制脚本,也可以限制其他如img-src,media-src等
-            .contentSecurityPolicy("script-src https://start.spring.io");
+            .contentSecurityPolicy("script-src https://start.spring.io")
+            .and()
+            .contentSecurityPolicy("script-scr http://localhost");
 
         // X-Frame-Options设置,方案一:相同域名允许访问
         /// http.headers().frameOptions().sameOrigin();

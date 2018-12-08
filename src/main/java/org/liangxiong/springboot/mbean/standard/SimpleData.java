@@ -1,4 +1,4 @@
-package org.liangxiong.springboot.mbean;
+package org.liangxiong.springboot.mbean.standard;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +10,13 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author liangxiong
  * @Date:2018-12-02
  * @Time:20:34
- * @Description 简单数据 MBean实现类.(实现类和接口必须处于同一级别包下,否则报错:NotCompliantMBeanException)
+ * @Description 标准MBean.(实现类和接口必须处于同一级别包下,否则报错:NotCompliantMBeanException)
  */
 public class SimpleData extends NotificationBroadcasterSupport implements SimpleDataMBean, NotificationListener, NotificationFilter {
 
+    /**
+     * 新的数据
+     */
     private String data;
 
     private static final AtomicLong sequenceNumber = new AtomicLong();
@@ -22,6 +25,7 @@ public class SimpleData extends NotificationBroadcasterSupport implements Simple
      * 注册通知监听器,监听发布地事件
      */
     public SimpleData() {
+        // 调用父类
         this.addNotificationListener(this, this, null);
     }
 
@@ -35,7 +39,7 @@ public class SimpleData extends NotificationBroadcasterSupport implements Simple
         this.data = data;
         // 实例化属性改变通知器
         Notification notification = new AttributeChangeNotification(this, sequenceNumber.incrementAndGet(), System.currentTimeMillis(), "data has benn changed from " + oldData + " to " + data, "data", data.getClass().getName(), oldData, data);
-        // 发送事件
+        // 发送事件(核心逻辑)
         sendNotification(notification);
     }
 
@@ -81,5 +85,15 @@ public class SimpleData extends NotificationBroadcasterSupport implements Simple
         String oldData = (String) attributeChangeNotification.getOldValue();
         String newData = (String) attributeChangeNotification.getNewValue();
         logger.info("AttributeChangeNotification oldData : {}, newData: {}", oldData, newData);
+    }
+
+    /**
+     * 暴露通知信息(否则需要我们自己去jConsole订阅通知)
+     *
+     * @return
+     */
+    @Override
+    public MBeanNotificationInfo[] getNotificationInfo() {
+        return new MBeanNotificationInfo[]{new MBeanNotificationInfo(new String[]{AttributeChangeNotification.ATTRIBUTE_CHANGE}, this.getClass().getName(), "attribute changed")};
     }
 }

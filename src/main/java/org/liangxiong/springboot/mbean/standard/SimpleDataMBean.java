@@ -1,4 +1,4 @@
-package org.liangxiong.springboot.mbean;
+package org.liangxiong.springboot.mbean.standard;
 
 /**
  * @author liangxiong

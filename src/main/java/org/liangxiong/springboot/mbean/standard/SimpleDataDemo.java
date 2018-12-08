@@ -1,4 +1,4 @@
-package org.liangxiong.springboot.mbean;
+package org.liangxiong.springboot.mbean.standard;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
  * @Time:20:36
  * @Description MBean的demo
  */
-public class MBeanDemo {
+public class SimpleDataDemo {
 
-    private static final Logger logger = LoggerFactory.getLogger(MBeanDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(SimpleDataDemo.class);
 
     public static void main(String[] args) {
         // MBean服务器
@@ -31,14 +31,13 @@ public class MBeanDemo {
             mBeanServer.registerMBean(simpleData, objectName);
             TimeUnit.SECONDS.sleep(Long.MAX_VALUE);
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("register MBean error");
         }
     }
 
     private static ObjectName getObjectName(Class<?> claz) {
         try {
-            // org.liangxiong.springboot.mbean.SimpleData
+            // org.liangxiong.springboot.mbean.standard.SimpleData
             String packageName = claz.getPackage().getName();
             String clazSimpleName = claz.getSimpleName();
             return new ObjectName(packageName + ":type=" + clazSimpleName);

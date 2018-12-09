@@ -2,6 +2,7 @@ package org.liangxiong.springboot.component;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author liangxiong
@@ -11,10 +12,16 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class BarComponent {
+@ConfigurationProperties(prefix = "middleware")
+public class MiddlewareComponent {
 
     /**
-     * 名称
+     * 名字
      */
     private String firstName;
+
+    /**
+     * 姓氏
+     */
+    private String lastName;
 }

@@ -126,8 +126,9 @@ lx:
         -  www.liangxiong.cn
         -  www.liangxiong.com
 # Spring Boot uses some relaxed rules for binding Environment properties to @ConfigurationProperties beans, so there doesn’t need to be an exact match between the Environment property name and the bean property name
-bar:
-    first-name: tomcat
+middleware:
+    first-name: Tomcat
+    lastName: Apache
 logging:
     config: classpath:log/logback-spring.xml
 # logback-spring.xml中springProperty需要
@@ -176,5 +177,8 @@ pagehelper:
     offsetAsPageNum: true
     # 当该参数设置为true时，使用RowBounds分页会进行count查询
     rowBoundsWithCount: true
-
-
+dog:
+    name: xiaobai
+    color: white
+    age: 2
+    type: Border Collie

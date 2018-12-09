@@ -1,6 +1,5 @@
 package org.liangxiong.springboot.component;
 
-import org.apache.coyote.http11.Http11Nio2Protocol;
 import org.apache.coyote.http11.Http11NioProtocol;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -10,6 +9,10 @@ import org.springframework.stereotype.Component;
 /**
  * @author liangxiong
  * @Description 编程式方式定制化配置server
+ * <ul>
+ * <li>优先级最高</li>
+ * <li>优先级高于{@link org.liangxiong.springboot.listener.CustomizeSpringBootApplicationListener}</li>
+ * </ul>
  * @Date 2018-10-25
  * @Time 11:22
  */

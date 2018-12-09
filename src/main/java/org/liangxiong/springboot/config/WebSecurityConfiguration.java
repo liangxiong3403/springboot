@@ -1,6 +1,7 @@
 package org.liangxiong.springboot.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,8 +17,9 @@ import java.util.Arrays;
  * @author liangxiong
  * @Date:2018-12-01
  * @Time:9:29
- * @Description Spring Security配置类
+ * @Description Spring Security配置类,应用于生产环境
  */
+@Profile("prod")
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -66,6 +68,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 用户认证设置
+     *
      * @param auth
      * @throws Exception
      */
@@ -79,7 +82,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             // 密码
             .password("123456")
             // 角色
-            .roles("ADMIN","USER")
+            .roles("ADMIN", "USER")
             .and()
             .withUser("libai")
             .password("111111")

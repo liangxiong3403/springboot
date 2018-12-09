@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -17,6 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
  */
 @SpringBootApplication
 @EnableRetry
+@ImportResource({"classpath:META-INF/spring/applicationContext.xml", "classpath:META-INF/spring/applicationContext-prod.xml"})
 @ServletComponentScan({"org.liangxiong.springboot.servlet", "org.liangxiong.springboot.filter", "org.liangxiong.springboot.listener"})
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableAuthorizationServer

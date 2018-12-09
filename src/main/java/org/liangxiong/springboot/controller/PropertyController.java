@@ -1,11 +1,10 @@
 package org.liangxiong.springboot.controller;
 
-import org.liangxiong.springboot.component.BarComponent;
+import org.liangxiong.springboot.component.MiddlewareComponent;
 import org.liangxiong.springboot.config.DiyConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +18,7 @@ import java.util.List;
  * @Time 16:20
  */
 @RestController
+@EnableConfigurationProperties(MiddlewareComponent.class)
 @RequestMapping("/property")
 public class PropertyController {
 
@@ -53,25 +53,16 @@ public class PropertyController {
     private int rangeNumber;
 
     /**
+     * 自定义POJO接收配置参数
+     */
+    @Autowired
+    private MiddlewareComponent middlewareComponent;
+
+    /**
      * 获取站点列表
      */
     @Autowired
     private DiyConfigProperties diyConfigProperties;
-
-
-    @Autowired
-    private BarComponent barComponent;
-
-    /**
-     * This can be particularly useful when you want to bind properties to third-party components that are outside of your control.
-     *
-     * @return
-     */
-    @Bean
-    @ConfigurationProperties(prefix = "bar")
-    private BarComponent barComponent() {
-        return new BarComponent();
-    }
 
     /**
      * 获取姓名
@@ -88,9 +79,9 @@ public class PropertyController {
      *
      * @return
      */
-    @GetMapping("/firstName")
-    public String getFirstName() {
-        return barComponent.getFirstName();
+    @GetMapping("/middleware")
+    public MiddlewareComponent middlewareComponent() {
+        return this.middlewareComponent;
     }
 
     /**

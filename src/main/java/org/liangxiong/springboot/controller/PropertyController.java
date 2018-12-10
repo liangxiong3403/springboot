@@ -4,7 +4,6 @@ import org.liangxiong.springboot.component.MiddlewareComponent;
 import org.liangxiong.springboot.config.DiyConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +17,6 @@ import java.util.List;
  * @Time 16:20
  */
 @RestController
-@EnableConfigurationProperties(MiddlewareComponent.class)
 @RequestMapping("/property")
 public class PropertyController {
 

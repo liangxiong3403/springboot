@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.constraints.Size;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author liangxiong
@@ -105,9 +105,48 @@ public class IndexController {
      */
     @GetMapping("/template")
     @ResponseBody
-    public School requestFromRemoteServer( String name) {
+    public School requestFromRemoteServer() {
         // 通过SpringBoot提供地RestTemplateBuilder进行RestTemplate的自定义
         RestTemplate restTemplate = builder.basicAuthorization("admin", "123456").build();
         return restTemplate.getForObject("http://localhost:9999/rest/json/school", School.class);
+    }
+
+    /**
+     * 获取客户端IP地址,需要修改代理服务器配置如下
+     * proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     */
+    @GetMapping("/index/ip")
+    @ResponseBody
+    public String getClientIP(HttpServletRequest request) {
+        // 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址
+        String ip = request.getHeader("X-Forwarded-For");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("Proxy-Client-IP");
+            }
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("WL-Proxy-Client-IP");
+            }
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("HTTP_CLIENT_IP");
+            }
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+            }
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getRemoteAddr();
+            }
+        } else if (ip.length() > 15) {
+            String[] ips = ip.split(",");
+            for (int index = 0; index < ips.length; index++) {
+                String strIp = ips[index];
+                if (!("unknown".equalsIgnoreCase(strIp))) {
+                    System.err.println("ip: " + ip);
+                    ip = strIp;
+                    break;
+                }
+            }
+        }
+        return ip;
     }
 }

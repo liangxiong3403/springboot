@@ -72,8 +72,9 @@ lx:
     -  www.liangxiong.cn
     -  www.liangxiong.com
 # Spring Boot uses some relaxed rules for binding Environment properties to @ConfigurationProperties beans, so there doesn’t need to be an exact match between the Environment property name and the bean property name
-bar:
-    first-name: tomcat
+middleware:
+    first-name: Tomcat
+    lastName: Apache
 # security相关配置
 security:
     user:
@@ -98,4 +99,9 @@ mybatis:
     check-config-location: true
     # MyBatis主配置文件位置
     config-location: classpath:mybatis/mybatis-config.xml
+dog:
+    name: xiaobai
+    color: white
+    age: 2
+    type: Border Collie
 

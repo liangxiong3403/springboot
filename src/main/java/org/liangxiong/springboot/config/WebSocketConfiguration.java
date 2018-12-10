@@ -3,6 +3,7 @@ package org.liangxiong.springboot.config;
 import org.liangxiong.springboot.websocket.MessageServerEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
@@ -12,6 +13,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  * @Time:15:30
  * @Description WebSocket配置类
  */
+@Profile("prod")
 @Configuration
 @EnableWebSocket
 public class WebSocketConfiguration {

@@ -3,6 +3,7 @@ package org.liangxiong.springboot;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Assert;
 import org.junit.Test;
 import org.liangxiong.springboot.entity.Role;
 import org.liangxiong.springboot.mapper.RoleMapper;
@@ -20,10 +21,10 @@ import java.io.Reader;
  * @Time:20:02
  * @Description 测试MyBatis原生编程方式获取数据
  */
-public class MyBatisTest {
+public class RoleTest {
 
     @Test
-    public void getRoleByName() {
+    public void testSelectRoleByName() {
         String resourcePath = "mybatis/mybatis-config.xml";
         SqlSession session = null;
         try {
@@ -36,7 +37,7 @@ public class MyBatisTest {
             session = sqlSessionFactory.openSession();
             RoleMapper mapper = session.getMapper(RoleMapper.class);
             Role role = mapper.selectByRoleName("test");
-            System.err.println("role: " + role);
+            Assert.assertEquals("TEST", role.getRoleName());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

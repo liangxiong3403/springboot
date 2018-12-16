@@ -2,6 +2,7 @@ package org.liangxiong.springboot;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.mock.web.MockServletConfig;
 import org.springframework.mock.web.MockServletContext;
 
 import javax.servlet.ServletContext;
@@ -24,4 +25,12 @@ public class MockServletAPITest {
         servletContext.setAttribute("name", "lx");
         Assert.assertEquals("lx", servletContext.getAttribute("name"));
     }
+
+    @Test
+    public void testMockServletConfig() {
+        MockServletConfig servletConfig = new MockServletConfig();
+        servletConfig.addInitParameter("name", "lx");
+        Assert.assertEquals("lx", servletConfig.getInitParameter("name"));
+    }
+
 }

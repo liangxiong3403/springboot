@@ -82,10 +82,10 @@ security:
         name: admin
         # 登陆密码
         password: 123456
-    oauth2:
-        client:
-            client-id: liangxiong
-            client-secret: 111111
+#    oauth2:
+#        client:
+#            client-id: liangxiong
+#            client-secret: 111111
     # 关闭Spring Security安全认证
     basic:
         enabled: false

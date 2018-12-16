@@ -1,4 +1,4 @@
-package org.liangxiong.springboot;
+package org.liangxiong.springboot.integration;
 
 import org.junit.*;
 import org.junit.runner.RunWith;

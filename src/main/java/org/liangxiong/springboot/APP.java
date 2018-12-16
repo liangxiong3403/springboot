@@ -20,8 +20,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableRetry
 @ImportResource({"classpath:META-INF/spring/applicationContext.xml", "classpath:META-INF/spring/applicationContext-prod.xml"})
 @ServletComponentScan({"org.liangxiong.springboot.servlet", "org.liangxiong.springboot.filter", "org.liangxiong.springboot.listener"})
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableAuthorizationServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableAuthorizationServer
 public class APP extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

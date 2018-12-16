@@ -27,5 +27,6 @@ Spring Boot
             - 自定义实现配置文件修改
             - org.liangxiong.springboot.listener.CustomizeSpringBootApplicationListener
 - SpringBoot通过META-INF/*.properties实现自动装配
-
-Spring通过org.springframework.core.io.support.SpringFactoriesLoader加载这些配置文件
+    - 比如`org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration`
+        - Spring通过org.springframework.core.io.support.SpringFactoriesLoader加载org.springframework.boot.autoconfigure.EnableAutoConfiguration
+            - EnableAutoConfiguration加载org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration

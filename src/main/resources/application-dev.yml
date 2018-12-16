@@ -177,8 +177,14 @@ pagehelper:
     offsetAsPageNum: true
     # 当该参数设置为true时，使用RowBounds分页会进行count查询
     rowBoundsWithCount: true
+# 配置相关功能
 dog:
     name: xiaobai
     color: white
     age: 2
     type: Border Collie
+# 自动装配相关功能
+flower:
+    enabled: true
+    name: rose
+    color: red

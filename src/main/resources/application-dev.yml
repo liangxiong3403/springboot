@@ -6,7 +6,8 @@ spring:
         url: jdbc:mysql://127.0.0.1:3306/springboot?characterEncoding=utf8&useSSL=false
         driverClassName: com.mysql.jdbc.Driver
         username: root
-        password: admin
+        password: YPZM9eB/U+p7btEbP0bg4oDAD66xFIOgJpYvUCnfeBi56/U1tqDvX8ttj/G/MHRpjMJ89JeY8oBiJ92V/BDH2g==
+        publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALrpgM48n2fHk0NjEDOhotIozW2GtXaoxjZ1PdEpidDywi7m2a24b57z1k7+Kb8Pg7WMnGHokq7SCsRoAe8mHtECAwEAAQ==
         druid:
             initial-size: 20
             max-active: 100
@@ -19,6 +20,8 @@ spring:
             stat-view-servlet:
                 login-username: liangxiong
                 login-password: 123456
+            filters: config
+            connect-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.publicKey}
     data:
         elasticsearch:
             properties:
